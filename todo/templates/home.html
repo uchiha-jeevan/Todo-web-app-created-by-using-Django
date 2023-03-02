@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TODO Home</title>
+</head>
+<body>
+
+    <style>
+        *{
+            text-decoration: none;
+        }
+
+        .main{
+            height: 500px;
+            width: 390px;
+            border: 2px solid blue;
+            text-align: center;
+            border-radius: 5px;
+            display: inline-block;
+        }
+        .main {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            text-align: center;
+            transform: translate(-50%, -50%);
+          }
+          
+        .container{
+            /*border: 2px solid magenta;
+            width: 390px;
+            height: 419px;
+            border-radius: 5px;*/
+            display:inline-block;
+            text-align: center;
+            width: 95%;
+
+
+        }
+        h1{
+            margin: 0;
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+            color: deeppink;
+        }
+        form{
+            display: inline-block;
+            margin-top: 10px;
+            margin-bottom: 10px;
+        }
+        input[type="submit"] {
+            background-color: #4CAF50; /* Set the background color */
+            color: white; /* Set the text color */
+            padding: 5px 10px; /* Set the padding */
+            border: none; /* Remove the border */
+            border-radius: 4px; /* Add rounded corners */
+            font-size: 12px; /* Set the font size */
+            cursor: pointer; /* Change cursor to pointer on hover */
+          }
+
+          .inner{
+            background-color: cyan;
+           
+            border: 5px solid mintcream;
+          }
+          span{
+            font-weight: bold;
+            color: black;
+            text-align: center;
+          }
+          a{
+            color: navy;
+            padding-left: 10px;
+            font-size: 18px;
+            float: left;
+            text-align: center;
+          }
+    </style>
+
+
+    <div class="main">
+    <h1>Create Task</h1>
+
+        <form action="" method="POST">
+
+            {% csrf_token %}
+            {{form.title}}
+            <input type="submit" name="create task">
+
+        </form>
+        <br>
+        <div class="container">
+            <br>
+
+
+            {% for t in task %}    
+            <div class="inner">
+            <a href="{% url 'edit' t.id %}">Edit</a>
+            <a href="{% url 'deleteTask' t.id %}">Delete</a>
+            <span>{{t.title}}</span>
+            <br>
+        </div>
+            {% endfor %}
+
+            
+            
+            
+        </div>
+
+    </div>
+
+    
+
+</body>
+</html>
